@@ -1,0 +1,115 @@
+sudo docker run -ti --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm disssid/ubuntu-cuda9-allpack
+
+Ctrl + P,Q
+
+sudo docker ps
+
+sudo docker attach <CONTAINER ID>
+ 
+https://www.tecmint.com/install-run-and-delete-applications-inside-docker-containers/
+
+
+apt-get install libpng-dev wget
+
+wget https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
+
+apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+
+tar -xvf Python-3.6.3.tgz
+
+cd Python-3.6.3
+
+./config
+make
+make test (may fail)
+sudo make install
+
+ln -s /usr/local/bin/python3.6 /bin/python
+
+sudo docker ps
+
+sudo docker commit 02a841ad58ea disssid/ubuntu-cuda9:part2
+
+sudo docker push disssid/ubuntu-cuda9:part2
+
+pip3.6 install pycl
+
+pip3.6 install PyOpenCL
+
+Complete output from command python setup.py egg_info:
+    ---------------------------------------------------------------------------
+    Mako is not installed.
+    ---------------------------------------------------------------------------
+    That is not a problem, as most of PyOpenCL will be just fine
+    without it. Some higher-level parts of pyopencl (such as
+    pyopencl.reduction) will not function without the templating engine
+    Mako [1] being installed. If you would like this functionality to
+    work, you might want to install Mako after you finish
+    installing PyOpenCL.
+    
+    Simply type
+    python -m pip install mako
+    either now or after the installation completes to fix this.
+    
+    [1] http://www.makotemplates.org/
+    ---------------------------------------------------------------------------
+    Hit Ctrl-C now if you'd like to think about the situation.
+    ---------------------------------------------------------------------------
+    Package libffi was not found in the pkg-config search path.
+    Perhaps you should add the directory containing `libffi.pc'
+    to the PKG_CONFIG_PATH environment variable
+    No package 'libffi' found
+
+FIX:
+
+apt-get install libffi6 libffi-dev
+
+python3.6 -m pip install mako
+
+apt install ocl-icd-opencl-dev
+pip3.6 install PyOpenCL
+
+pip3 install PyCUDA
+
+apt install llvm-3.7 libedit-dev
+
+export LLVM_CONFIG=/usr/bin/llvm-config-3.7
+
+pip3 install llvmlite numba
+
+pip3 install cython
+
+pip3 install tensorflow
+
+pip3 install tensorflow-gpu
+
+wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
+sh Anaconda3-5.0.1-Linux-x86_64.sh
+Anaconda path - /usr/local/anaconda
+sudo docker build -t name1:tag1 -t name1:tag2 -t name2 
+
+sudo docker ps -aq -f status=exited
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/bin/python
+export NUMBAPRO_NVVM=/usr/local/cuda-9.0/nvvm/lib64/libnvvm.so
+export NUMBAPRO_LIBDEVICE=/usr/local/anaconda/lib
+
+NOT NECESSARY
+
+/*
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/nvvm/
+export CUDA_HOME=/usr/local/cuda
+export LIBNVVM_HOME=$CUDA_HOME/nvvm
+*/
+
+Ctrl+p and q
+sudo docker cp pensive_swartz:/root/output1.png .
+sudo docker cp pensive_swartz:/root/output2.png .
+sudo docker cp pensive_swartz:/root/output3.png .
+sudo docker cp pensive_swartz:/root/output4.png .
+sudo docker cp pensive_swartz:/root/output5.png .
+scp sandcobainer@129.130.11.218:~/output.png .
+scp samarav@cislinux.cs.ksu.edu:~/output.png .
+
+sudo docker ps -aq --no-trunc | xargs sudo docker rm
